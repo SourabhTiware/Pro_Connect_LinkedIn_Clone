@@ -16,7 +16,6 @@ const app = express();
 
 app.use(cors({
   origin: [
-    "http://localhost:3000",  // for local dev
     "https://pro-connect-linked-in-clone-six.vercel.app" // for Vercel
   ],
   methods: ["GET", "POST", "PUT", "DELETE"],
