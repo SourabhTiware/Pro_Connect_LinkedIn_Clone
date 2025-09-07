@@ -9,9 +9,19 @@ import userRoutes from "./routes/users.routes.js"
 
 const app = express();
 
+// app.use(cors({
+//   origin: "http://localhost:3000", 
+//   credentials: true               
+// }));
+
 app.use(cors({
-  origin: "http://localhost:3000", 
-  credentials: true               
+  origin: [
+    "http://localhost:3000",  // for local dev
+    "https://pro-connect-linked-in-clone-six.vercel.app" // for Vercel
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true
 }));
 
 
@@ -27,7 +37,7 @@ app.get("/", (req, res) => {
 });
 
 const start = async () =>{
-    const connectDB = await mongoose.connect("mongodb+srv://sourabhtiware1737:nb4LZVnMFxeD02i2@linkedinclone.5lkt5lc.mongodb.net/?retryWrites=true&w=majority&appName=linkedinclone");
+    const connectDB = await mongoose.connect(process.env.dbURL);
 
     app.listen(9090,() =>{
         console.log("server is running on port 9090");
