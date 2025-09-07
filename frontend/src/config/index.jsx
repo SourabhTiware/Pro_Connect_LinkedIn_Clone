@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // export const BASE_URL = "http://localhost:9090";
-export const BASE_URL = "https://pro-connect-linkedin-clone.onrender.com:9090";
+export const BASE_URL = "https://pro-connect-linkedin-clone.onrender.com";
 
 const clientServer = axios.create({
   baseURL: BASE_URL,
