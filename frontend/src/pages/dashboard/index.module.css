@@ -1,0 +1,261 @@
+.scrollComponent{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.wrapper{
+    width: 100%;  
+    max-width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+}
+
+.createPostContainer {
+    display: flex;
+    height: 10svh;
+    width: 100%;
+    padding-inline: 0.8rem;
+    gap: 1.3rem;
+    position: relative;
+    align-items: center;
+    background: rgba(255, 246, 246);
+    border-radius: 20px;
+}
+
+.uploadButton{
+    position: absolute;
+    right: 0;
+    bottom: -50%;
+    background: rgba(2, 93, 158);
+    color: white;
+    border-radius: 10px;
+    padding-inline: 1.2rem;
+    padding-block: 0.8rem;
+    cursor: pointer;
+}
+
+.userProfile {
+    border-radius: 100%;
+    height: 60%;
+    width: fit-content;
+}
+
+.createPostContainer > textarea{
+    width: 100%;
+}
+
+.Fab{
+    background: rgba(0, 59, 130);
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.Fab svg{
+    width: fit-content;
+    height: 40px;
+    color: white;
+}
+
+.textareaOfContent{
+    width: 80%;
+    height: 70%;
+    border-radius: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-inline: 1.5rem;
+    padding-block: 0.8rem;
+    outline: none;
+}
+
+ .singleCard{
+    width: 100%;
+    border-radius: 10px 10px 0px 0px;
+    border-bottom: 1px solid rgb(179,179,179);
+} 
+
+.singleCard_profileContainer{
+    display: flex;
+    align-items: flex-start;
+    gap: 1.2rem;
+    padding: 1.2rem;
+    padding-right: 3.4rem;
+} 
+
+.singleCard_profileContainer > img {
+    width: 10%;
+    border-radius: 50%;
+} 
+
+.singleCard_image{
+    width: 100%;
+    height: fit-content;
+    padding-top: 0.6rem;
+    overflow: hidden;
+}
+
+.singleCard_image > img{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 15px 20px;
+}
+
+.optionContainer{
+    display: flex;
+    height: 20%;
+    width: 100%;
+    justify-content: space-between;
+    padding-block: 0.6rem;
+}
+
+.singleOption_optionContainer{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.singleOption_optionContainer > svg{
+    height: 100%;
+    width: 10%;
+    min-width: 1rem;
+}
+
+.commentsContainer{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background: rgba(0,0,0,0.7);
+    overflow: hidden;
+
+}
+
+.allCommentsContainer{
+    min-width: 40svw;
+    height: 80vh;
+    background: #fff;
+    border-radius: 10px;
+    position: relative;
+    padding: 1.4rem;
+    padding-top:0.4rem;
+    margin-top: 6rem;
+}
+
+.postCommentContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.2rem;
+    bottom: 1.2rem;
+    left: 1.2rem;
+    width: 90%;
+    position: absolute;
+}
+
+.postCommentContainer > input{
+    flex: 0.9;
+    padding-inline: 1.5rem;
+    padding-block: 1.2rem;
+    border: none;
+    outline: none;
+    background-color: rgb(228, 228, 228);
+    border-radius: 10px;
+}
+
+.postCommentContainer > input:focus{
+    border: 1px solid silver;
+}
+
+.postCommentContainer_commentsBtn{
+    flex: 0.1;
+    width: fit-content;
+    padding: 1.2rem;
+    background: orange;
+    border-radius: 10px;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+}
+
+.singleComment {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  padding: 18px 24px;
+  margin-bottom: 18px;
+  transition: box-shadow 0.2s;
+}
+
+.singleComment:hover {
+  box-shadow: 0 6px 18px rgba(0,0,0,0.13);
+}
+
+.singleComment_profileContainer {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.userProfile {
+  width: 52px;
+  height: 52px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #f3f3f3;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.09);
+  flex-shrink: 0;
+}
+
+.singleComment_profileContainer > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.singleComment_profileContainer p:first-child {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #282828;
+  margin-bottom: 3px;
+}
+
+.singleComment_profileContainer p:last-child {
+  font-size: 1rem;
+  color: #868e96;
+  margin-bottom: 0;
+}
+
+.singleComment_body {
+  margin-top: 12px;
+  margin-left: 70px;
+  padding: 12px 18px;
+  background: #f8f9fb;
+  border-radius: 6px;
+  color: #232323;
+  font-size: 1.07rem;
+  line-height: 1.52;
+  position: relative;
+  border-left: 3px solid #e2e6ee;
+  box-sizing: border-box;
+}
+
+.highlight {
+  background-color: rgba(208, 189, 250, 0.486);
+  transition: background-color 1s ease;
+  opacity: 0.9;
+}
+
+@media screen and (max-width: 600){
+  .allCommentsContainer{
+    width: 90%;
+  }
+}

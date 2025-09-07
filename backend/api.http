@@ -1,0 +1,61 @@
+
+### Register route test
+POST http://localhost:9090/register
+Content-Type: application/json
+
+{
+
+  "name": "Sourabh Tiware",
+  "email": "sourabh@tiware.com",
+  "username": "sourabh",
+  "password": "sourabh"
+}
+
+###
+
+POST http://localhost:9090/login HTTP/1.1
+content-Type: application/json
+
+{
+  "email": "sourabhtiware1737@gmail.com",
+  "password": "sourabh@77"
+}
+
+POST   http://localhost:9090/get_user_and_profile
+Content-Type: application/json
+
+{
+  "token" : "dca20f6a5915757323a29d49864cdde535688766e2e7a4b0e1bc25ee7ba88705"
+}
+
+
+###
+
+POST http://localhost:9090/update_profile_data
+Content-Type: application/json
+
+{
+  "token": "bbcdb49ec59926d96113104346d77da928aeb5165547ddb1c3e3bcf57a6db621",
+  "bio": "Experienced tech leader and problem solver.",
+  "currentPost": "CTO",
+  "pastWork": [
+    {
+      "company": "Microsoft",
+      "position": "CTO",
+      "years": "2+"
+    }
+  ],
+  "education": [
+    {
+      "school": "IIT",
+      "degree": "B.Tech",
+      "fieldOfStudy": "Computer Science",
+      "years": "2015–2019"
+    }
+  ]
+}
+
+###
+
+POST http://localhost:9090/user/get_all_users
+Content-Type: application/json
