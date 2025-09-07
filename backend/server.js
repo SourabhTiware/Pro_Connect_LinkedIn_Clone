@@ -26,11 +26,11 @@ const app = express();
 
 
 const allowedOrigins = [
-  "http://localhost:3000", // local dev
-  "https://pro-connect-linked-in-clone-six.vercel.app", // previous Vercel deployment
-  "https://pro-connect-linked-in-clone-9f46p3951-sourabh-tiwares-projects.vercel.app" // new Vercel deployment
+  "http://localhost:3000",
+  "https://pro-connect-linked-in-clone-six.vercel.app", // old deployment
+  "https://pro-connect-linked-in-clone-9f46p3951-sourabh-tiwares-projects.vercel.app",
+  "https://pro-connect-linked-in-clone-git-main-sourabh-tiwares-projects.vercel.app"
 ];
-
 
 app.use(cors({
   origin: function(origin, callback){
