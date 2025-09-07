@@ -14,13 +14,40 @@ const app = express();
 //   credentials: true               
 // }));
 
+// app.use(cors({
+//   origin: [
+//     "http://localhost:3000",  // for local dev
+//     "https://pro-connect-linked-in-clone-six.vercel.app" // for Vercel
+//   ],
+//   methods: ["GET", "POST", "PUT", "DELETE"],
+//   allowedHeaders: ["Content-Type", "Authorization"],
+//   credentials: true
+// }));
+
+
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://pro-connect-linked-in-clone-six.vercel.app"
+];
+
 app.use(cors({
-  origin: [
-    "http://localhost:3000",  // for local dev
-    "https://pro-connect-linked-in-clone-six.vercel.app" // for Vercel
-  ],
-  methods: ["GET", "POST", "PUT", "DELETE"],
+  origin: function(origin, callback){
+    if(!origin) return callback(null, true); // allow Postman or curl
+    if(allowedOrigins.indexOf(origin) === -1){
+      const msg = `CORS policy: origin ${origin} not allowed`;
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true
+}));
+
+// This handles preflight requests for all routes
+app.options("*", cors({
+  origin: allowedOrigins,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   credentials: true
 }));
 
