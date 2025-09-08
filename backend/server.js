@@ -1,67 +1,132 @@
-dotenv.config();
+// dotenv.config();
 
-import express from 'express';
-import cors from 'cors';
-import dotenv from "dotenv";
-import mongoose from 'mongoose';
-import postRoutes from "./routes/posts.routes.js"
-import userRoutes from "./routes/users.routes.js"
+// import express from 'express';
+// import cors from 'cors';
+// import dotenv from "dotenv";
+// import mongoose from 'mongoose';
+// import postRoutes from "./routes/posts.routes.js"
+// import userRoutes from "./routes/users.routes.js"
 
-const app = express();
+// const app = express();
+
+// // app.use(cors({
+// //   origin: "http://localhost:3000", 
+// //   credentials: true               
+// // }));
+
+// // app.use(cors({
+// //   origin: [
+// //     "http://localhost:3000",  // for local dev
+// //     "https://pro-connect-linked-in-clone-six.vercel.app" // for Vercel
+// //   ],
+// //   methods: ["GET", "POST", "PUT", "DELETE"],
+// //   allowedHeaders: ["Content-Type", "Authorization"],
+// //   credentials: true
+// // }));
+
+
+// const allowedOrigins = [
+//   "http://localhost:3000",
+// ];
 
 // app.use(cors({
-//   origin: "http://localhost:3000", 
-//   credentials: true               
-// }));
-
-// app.use(cors({
-//   origin: [
-//     "http://localhost:3000",  // for local dev
-//     "https://pro-connect-linked-in-clone-six.vercel.app" // for Vercel
-//   ],
-//   methods: ["GET", "POST", "PUT", "DELETE"],
+//   origin: function(origin, callback){
+//     if(!origin) return callback(null, true); // allow Postman, curl
+//     if (allowedOrigins.indexOf(origin) !== -1) return callback(null, true);
+//     if (/https:\/\/pro-connect-linked-in-clone-.*\.vercel\.app/.test(origin)) {
+//       return callback(null, true); // allow all Vercel subdomains
+//     }
+//     return callback(new Error(`CORS policy: origin ${origin} not allowed`), false);
+//   },
+//   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
 //   allowedHeaders: ["Content-Type", "Authorization"],
 //   credentials: true
 // }));
 
 
-const allowedOrigins = [
-  "http://localhost:3000",
-];
+// app.use(express.json());
 
+// app.use(postRoutes);
+// app.use(userRoutes);
+
+// app.use(express.static("uploads"));
+
+// app.get("/", (req, res) => {
+//     res.send("Backend server is running!");
+// });
+
+// const start = async () =>{
+//     const connectDB = await mongoose.connect(process.env.dbURL);
+
+//     app.listen(9090,() =>{
+//         console.log("server is running on port 9090");
+//     })
+
+// }
+
+// start();
+
+
+
+import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import mongoose from 'mongoose';
+import postRoutes from "./routes/posts.routes.js";
+import userRoutes from "./routes/users.routes.js";
+
+dotenv.config();
+const app = express();
+
+// Allowed origins for local dev
+const allowedOrigins = ["http://localhost:3000"];
+
+// CORS middleware
 app.use(cors({
-  origin: function(origin, callback){
-    if(!origin) return callback(null, true); // allow Postman, curl
+  origin: function(origin, callback) {
+    if (!origin) return callback(null, true); // Postman, curl, SSR
+
     if (allowedOrigins.indexOf(origin) !== -1) return callback(null, true);
+
     if (/https:\/\/pro-connect-linked-in-clone-.*\.vercel\.app/.test(origin)) {
-      return callback(null, true); // allow all Vercel subdomains
+      return callback(null, true);
     }
-    return callback(new Error(`CORS policy: origin ${origin} not allowed`), false);
+
+    return callback(null, false); // reject silently
   },
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
+  allowedHeaders: ["Content-Type", "Authorization", "Accept", "X-Requested-With", "Origin"],
   credentials: true
 }));
 
-
+// Parse JSON bodies
 app.use(express.json());
 
+// Routes
 app.use(postRoutes);
 app.use(userRoutes);
 
+// Serve uploads
 app.use(express.static("uploads"));
 
+// Health check
 app.get("/", (req, res) => {
-    res.send("Backend server is running!");
+  res.send("Backend server is running!");
 });
 
-const start = async () =>{
-    const connectDB = await mongoose.connect(process.env.dbURL);
+// Start server and connect to DB
+const start = async () => {
+  try {
+    await mongoose.connect(process.env.dbURL);
+    console.log("MongoDB connected");
 
-    app.listen(9090,() =>{
-        console.log("server is running on port 9090");
-    })
-
-}
+    const PORT = process.env.PORT || 9090;
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
+  } catch (err) {
+    console.error("Failed to start server:", err);
+  }
+};
 
 start();
