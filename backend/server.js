@@ -79,15 +79,35 @@ dotenv.config();
 const app = express();
 
 const corsOptions = {
-  origin: [
-    "http://localhost:3000",
-    "https://pro-connect-linked-in-clone-murex.vercel.app"
-  ], // allow both local and Vercel frontend
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true, // allow cookies if you use authentication
+  origin: function (origin, callback) {
+    const allowedOrigins = [
+      "http://localhost:3000",
+      "https://pro-connect-linked-in-clone-murex.vercel.app" // production
+    ];
+
+    // Allow requests with no origin (like Postman, curl)
+    if (!origin) return callback(null, true);
+
+    // Allow specific origins
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+
+    // Allow all Vercel preview deployments (*.vercel.app)
+    if (/https:\/\/pro-connect-linked-in-clone-.*\.vercel\.app/.test(origin)) {
+      return callback(null, true);
+    }
+
+    // Otherwise block
+    return callback(new Error(`CORS policy: origin ${origin} not allowed`), false);
+  },
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
 };
 
 app.use(cors(corsOptions));
+
 
 // Parse JSON bodies
 app.use(express.json());
