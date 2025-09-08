@@ -80,7 +80,7 @@ const app = express();
 
 app.use(cors({
   origin: [
-    "http://localhost:3000", // for local dev
+    // "http://localhost:3000", // for local dev
     "https://pro-connect-linked-in-clone-murex.vercel.app" // your Vercel frontend
   ],
   credentials: true
