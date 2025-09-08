@@ -31,7 +31,7 @@ const router = useRouter();
           </div>
 
           <div className={styles.maincontainer_right}>
-            <img src="images/homeConnection.jpg" alt="" />
+            <img src="images/ProConnect Image.png" alt="" />
           </div>
 
         </div>

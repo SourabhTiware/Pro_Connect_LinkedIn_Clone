@@ -16,7 +16,7 @@ export default function NavBarComponent(){
         <div className={styles.container}>
             <nav style={{cursor: "pointer"}} className={styles.navBar}>
 
-                <h1 onClick={() =>{ router.push("/")}}>Pro Connect</h1>
+                <h1 className={styles.heading} onClick={() =>{ router.push("/")}}> <img className={styles.proLogo} src="images/ProConnect Image.png" alt="" />Pro Connect</h1>
 
                 <div className={styles.navBarOptionContainer}>
                     {

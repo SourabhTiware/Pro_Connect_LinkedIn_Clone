@@ -21,8 +21,8 @@
 .maincontainer_right img{
 
     flex: 0.5;
-    width: 200px;
-    height: 200px;
+    width: 500px;
+    height: 500px;
 
 }
 
@@ -69,6 +69,8 @@
     }
 
     .maincontainer_right img{
-        width: 100%;
+        /* width: 70%; */
+           width: 300px;
+           height: 300px;
     }
 }

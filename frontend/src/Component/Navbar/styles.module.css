@@ -23,3 +23,22 @@
     cursor: pointer;
     font-weight: bold;
 }
+
+.proLogo {
+  width: 80px; 
+  height: 80px; 
+  object-fit: contain; 
+  border-radius: 8px; 
+  border: 2px solid #f3f3f3;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  flex-shrink: 0;
+}
+
+.heading {
+  display: flex;
+  align-items: center;
+  gap: 1rem; 
+  cursor: pointer;
+  font-size: 1.8rem; 
+  font-weight: 700;
+}
