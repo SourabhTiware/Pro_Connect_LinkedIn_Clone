@@ -80,6 +80,8 @@ const app = express();
 
 const corsOptions = {
   origin: function (origin, callback) {
+    console.log("🌐 Incoming request from origin:", origin);
+
     const allowedOrigins = [
       "http://localhost:3000",
       "https://pro-connect-linked-in-clone-murex.vercel.app" // production
@@ -98,7 +100,7 @@ const corsOptions = {
       return callback(null, true);
     }
 
-    // Otherwise block
+    console.warn(`❌ CORS blocked request from: ${origin}`);
     return callback(new Error(`CORS policy: origin ${origin} not allowed`), false);
   },
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
