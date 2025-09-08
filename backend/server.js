@@ -78,24 +78,11 @@ import userRoutes from "./routes/users.routes.js";
 dotenv.config();
 const app = express();
 
-// Allowed origins for local dev
-const allowedOrigins = ["http://localhost:3000"];
-
-// CORS middleware
 app.use(cors({
-  origin: function(origin, callback) {
-    if (!origin) return callback(null, true); // Postman, curl, SSR
-
-    if (allowedOrigins.indexOf(origin) !== -1) return callback(null, true);
-
-    if (/https:\/\/pro-connect-linked-in-clone-.*\.vercel\.app/.test(origin)) {
-      return callback(null, true);
-    }
-
-    return callback(null, false); // reject silently
-  },
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization", "Accept", "X-Requested-With", "Origin"],
+  origin: [
+    "http://localhost:3000", // for local dev
+    "https://pro-connect-linked-in-clone-murex.vercel.app" // your Vercel frontend
+  ],
   credentials: true
 }));
 
