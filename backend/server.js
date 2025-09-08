@@ -78,13 +78,16 @@ import userRoutes from "./routes/users.routes.js";
 dotenv.config();
 const app = express();
 
-app.use(cors({
+const corsOptions = {
   origin: [
-    // "http://localhost:3000", // for local dev
-    "https://pro-connect-linked-in-clone-murex.vercel.app" // your Vercel frontend
-  ],
-  credentials: true
-}));
+    "http://localhost:3000",
+    "https://pro-connect-linked-in-clone-murex.vercel.app"
+  ], // allow both local and Vercel frontend
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true, // allow cookies if you use authentication
+};
+
+app.use(cors(corsOptions));
 
 // Parse JSON bodies
 app.use(express.json());
