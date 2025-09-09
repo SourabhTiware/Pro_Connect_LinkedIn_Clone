@@ -20,7 +20,9 @@ const router = useRouter();
 
           <div className={styles.mainContainer_left}>
 
-               <p className={styles.heroHeading}>Connect, collaborate, and grow with ProConnect — a next-gen platform designed to help professionals build meaningful networks and unlock new opportunities.</p>
+              <div className={styles.heroHeading}>
+                  <p>Connect, collaborate, and grow with ProConnect — a next-gen platform designed to help professionals build meaningful networks and unlock new opportunities.</p>
+              </div>
 
                
 
