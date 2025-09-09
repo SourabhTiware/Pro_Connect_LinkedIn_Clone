@@ -14,15 +14,24 @@
 }
 
 .buttonJoin{
-    background: #cd8987;
+    background: #fc0266;;
     border-radius: 10px;
     padding-block: 0.6rem;
     padding-inline: 1.2rem;
     color: white;
-    font-size: 0.7rem;
+    font-size: 0.9rem;
     cursor: pointer;
     font-weight: bold;
+    margin-left: 1.7rem;
+    cursor: pointer;
+    
 }
+
+.buttonJoin:hover{
+    transform: scale(1.1);
+    transition: all 0.3s ease-in-out;
+}
+
 
 .proLogo {
   width: 80px; 

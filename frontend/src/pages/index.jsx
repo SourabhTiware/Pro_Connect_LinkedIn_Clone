@@ -20,9 +20,9 @@ const router = useRouter();
 
           <div className={styles.mainContainer_left}>
 
-               <p>Connect With Frindeds with Exaggeration</p>
+               <p className={styles.heroHeading}>Connect, collaborate, and grow with ProConnect — a next-gen platform designed to help professionals build meaningful networks and unlock new opportunities.</p>
 
-               <p>A true social media platform, with stories no blufs i d;lkfjdslf</p>
+               
 
                <div onClick={() =>{router.push("/login")}} className={styles.buttonJoin}>
 
