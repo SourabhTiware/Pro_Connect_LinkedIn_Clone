@@ -13,6 +13,7 @@ export default function Home() {
 const router = useRouter();
 
   return (
+    // var(--artdeco-reset-base-background-transparent);
     <UserLayout>
       <div className={styles.container}>
 

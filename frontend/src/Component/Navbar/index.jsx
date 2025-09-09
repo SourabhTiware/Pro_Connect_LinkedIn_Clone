@@ -16,7 +16,20 @@ export default function NavBarComponent(){
         <div className={styles.container}>
             <nav style={{cursor: "pointer"}} className={styles.navBar}>
 
-                <h1 className={styles.heading} onClick={() =>{ router.push("/")}}> <img className={styles.proLogo} src="images/ProConnect Image.png" alt="" />Pro Connect</h1>
+                <h1 
+                    className={`${styles.heading} `}
+                    onClick={ () => {
+                        if(!authState?.user){
+                             router.push("/login")
+                            
+                        } else{
+                           router.push("/dashboard")
+                        }
+                    }
+                        
+                    }
+               
+                > <img className={styles.proLogo} src="/images/ProConnect Image.png" alt="" />Pro_Connect</h1>
 
                 <div className={styles.navBarOptionContainer}>
                     {
@@ -25,9 +38,10 @@ export default function NavBarComponent(){
                             <div style={{display: "flex", gap: "1.2rem"}}>
                                 
                                 {/* <p> Hey, {authState.user?.userId?.name || authState.user?.name || "Guest"} </p> */}
+
                                 <p onClick={() =>{
                                     router.push("/profile")
-                                }} style={{fontWeight: "bold", cursor:"pointer"}}> {authState.user?.userId?.name || authState.user?.name || "Guest"} Profile</p>
+                                }} style={{fontWeight: "bold", cursor:"pointer"}}>  Profile</p>
 
                                 <p onClick={() =>{
                                     localStorage.removeItem("token")
