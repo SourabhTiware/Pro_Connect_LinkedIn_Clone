@@ -165,14 +165,16 @@ export const getUserAndProfile = async (req, res) => {
 
     const token = authHeader.split(" ")[1]; 
 
-
-
     const user = await User.findOne({ token }); 
 
     if (!user) return res.status(404).json({ message: "user not found" });
 
     const userProfile = await Profile.findOne({ userId: user._id })
       .populate("userId", "name email username profilePicture");
+
+      if(userProfile){
+        await userProfile.save();
+      }
 
    
     return res.json({ user, profile: userProfile });
@@ -191,6 +193,7 @@ export const updateProfileData = async (req,res) =>{
         if(!userProfile) return res.status(404).json({message: "user not found"});
 
         const profile_to_update = await Profile.findOne({userId: userProfile._id});
+        if (!profile_to_update) return res.status(404).json({ message: "profile not found" });
 
         Object.assign(profile_to_update, newProfileData);
 

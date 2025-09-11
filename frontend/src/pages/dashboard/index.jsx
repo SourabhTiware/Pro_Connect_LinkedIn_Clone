@@ -14,8 +14,8 @@ export default function DashBoard() {
   const dispatch = useDispatch();
 
   const router = useRouter();
-const { postId } = router.query;
-const [highlightedPost, setHighlightedPost] = useState(null);
+  const { postId } = router.query;
+  const [highlightedPost, setHighlightedPost] = useState(null);
 
 
   const authState = useSelector((state) => state.auth);
@@ -130,20 +130,19 @@ useEffect(() => {
 
                                       <div onClick={() => visitProfile(post.userId?.username)}  style={{cursor:"pointer"}} >
                                         <img className={styles.userProfile} src={`${BASE_URL}/${post.userId?.profilePicture || "default.jpg"}`} alt="" 
-                                          style={{ width: "100px", height: "100px", objectFit: "cover", borderRadius: "50%" }}  
+                                           
                                         />
                                       </div>
 
                                       <div  className={styles.singleCard_username}>
                                               <div>
-                                                          <p onClick={() => visitProfile(post.userId?.username)} style={{fontWeight: "bold", cursor:"pointer"}}>{post.userId.name}</p>
-                                                          <p onClick={() => visitProfile(post.userId?.username)} style={{color:"gray",cursor:"pointer"}}>@{post.userId.username}</p>
+                                                    <p onClick={() => visitProfile(post.userId?.username)} >{post.userId.name}</p>
+                                                    <p onClick={() => visitProfile(post.userId?.username)} className={styles.singleCard_userId} >@{post.userId.username}</p>
                                               </div>
 
                                               <div>
 
                                                   {
-
                                                             post.userId?._id === authState.user?.userId?._id && 
                                                             <div onClick=
                                                             { async() =>{
@@ -156,8 +155,7 @@ useEffect(() => {
                                                               </svg>
 
                                                             </div>
-
-                                                        }
+                                                  }
 
                                                 </div>
                                       </div>
@@ -166,7 +164,6 @@ useEffect(() => {
 
                                 <div>
                                       <p className={styles.post_body}>{post.body}</p>
-
 
                                       <div className={styles.singleCard_image}>
 
@@ -274,7 +271,6 @@ useEffect(() => {
                           >
                             <p>comments</p>
                           </div>
-                        
                       </div>
                     </div>
                 </div>

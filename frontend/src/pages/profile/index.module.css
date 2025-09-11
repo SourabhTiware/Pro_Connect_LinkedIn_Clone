@@ -52,17 +52,6 @@
     background: #000
 }
 
-/* .backDrop{
-    width: 10em;
-    height: 10em;
-    object-fit: cover;
-    border-radius: 50%;
-    position: absolute;
-    bottom: -30%;
-    left: 8%;
-    text-align: center;
-} */
-
 .profileContainer_details{
     padding-top: 6.6rem;
 }
@@ -165,33 +154,60 @@
     cursor: pointer;
 }
 
-.commentsContainer{
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    left: 0;
-    z-index: 5;
-    background: rgba(0,0,0,0.7);
-    overflow: hidden;
-
+.commentsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  background: rgba(0, 0, 0, 0.7);
+  overflow: hidden;
 }
 
-.allCommentsContainer{
-    width: 40vw;
-    height: fit-content;
-    background: #fff;
-    border-radius: 10px;
-    position: relative;
-    padding: 1.4rem;
-    padding-top:0.4rem;
-    margin-top: 6rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
+.allCommentsContainer {
+  width: 40vw;
+  max-height: 80vh;      /* 🔥 limit modal height */
+  overflow-y: auto;      /* 🔥 make content scrollable */
+  background: #fff;
+  border-radius: 10px;
+  position: relative;
+  padding: 1.4rem;
+  padding-top: 0.4rem;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+
+.allCommentsContainer input,
+.allCommentsContainer select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.updateProfileBtn {
+  background: #0073b1; 
+  color: white;
+  padding: 10px;
+  border-radius: 6px;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  margin-top: 1rem;
+}
+
+.updateProfileBtn:disabled {
+  cursor: not-allowed;
+  background: #0073b1;
+  opacity: 0.5;
 }
 
 .inputField{
