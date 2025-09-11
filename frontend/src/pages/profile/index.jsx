@@ -64,22 +64,15 @@ export default function profilePage()
         const {name, value} = e.target;
         setInputData({...inputData, [name]: value})
     }
-
-    // const handleEduInputChange = (e) =>{
-    //     const {name, value} = e.target;
-    //     setInputEduData({...inputEduData, [name]: value})
-    // }
-
         const handleEduInputChange = (e) => {
       const { name, value } = e.target;
       setInputEduData({ ...inputEduData, [name]: value });
       };
 
-
-    useEffect(() =>{
-        dispatch(getAboutUser({token: localStorage.getItem("token")}))
-        dispatch(getAllPosts())
-    }, [])
+    useEffect(() => {
+    dispatch(getAboutUser()); 
+    dispatch(getAllPosts());
+}, []);
 
     useEffect(() =>{
         if(authState.user != undefined){
@@ -206,22 +199,13 @@ export default function profilePage()
                     <div className={styles.workHistoryContainer}>
                       {userProfile.pastWork.map((work, index) => (
                         <div key={index} className={styles.workHistoryCard}>
-
-                          {/* <div style={{ display: "flex", flexDirection: "column", gap: "0.3rem" }}>
-                            <p style={{ fontWeight: "bold", display: "flex",  alignItems: "center", gap: "0.8rem",}} >
-                              {work.company} - {work.position}
-                        
-                            </p>
-
-                          <p><strong>Working year's</strong>  -  {work.years}</p>
-                          </div> */}
                                                   
                           <div style={{ display: "flex", flexDirection: "column", gap: "0.3rem" }}>
                                     <p>{work.title}</p>
                                     <p>{work.company_or_organization} - {work.employee_type}</p>
                                     <p>{work.startMonth} {work.startYear} {" "} - {work.endMonth ? `${work.endMonth} ${work.endYear}` : "Present"}</p>
                                     <p>{work.location} - {work.location_type}</p>
-                                  </div>
+                          </div>
                           
                         </div>
                       ))}
@@ -525,3 +509,5 @@ export default function profilePage()
        </UserLayout>
     )
 }
+
+

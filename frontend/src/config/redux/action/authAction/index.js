@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import clientServer from "@/config";
+import clientServer, { BASE_URL } from "@/config";
+
 
 
 export const loginUser = createAsyncThunk("user/login", async(userAgent, thunkAPI) =>{
@@ -54,7 +55,8 @@ export const getAboutUser = createAsyncThunk("user/getAboutUser", async (_, thun
       {}, 
       {
         headers: {
-          Authorization: `Bearer ${token}` 
+          // Authorization: `Bearer ${token}` 
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         }
       }
     );
@@ -64,7 +66,6 @@ export const getAboutUser = createAsyncThunk("user/getAboutUser", async (_, thun
     return thunkAPI.rejectWithValue(err.response?.data || { message: "Error fetching profile" });
   }
 });
-
 
 
 export const getAllUsers = createAsyncThunk("user/getAllUsers", async(_, thunkAPI) =>{

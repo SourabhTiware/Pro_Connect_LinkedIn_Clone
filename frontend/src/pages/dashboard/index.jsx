@@ -17,7 +17,6 @@ export default function DashBoard() {
   const { postId } = router.query;
   const [highlightedPost, setHighlightedPost] = useState(null);
 
-
   const authState = useSelector((state) => state.auth);
 
   const postState = useSelector((state) => state.postReducer);
@@ -50,14 +49,7 @@ useEffect(() => {
         if (!authState.all_profiles_fetched) {
           dispatch(getAllUsers());
         }
-      }, [authState.all_profiles_fetched, dispatch]);
-
-      useEffect(() => {
-        if (!authState.all_profiles_fetched) {
-          dispatch(getAllUsers());
-        }
-    }, [authState.all_profiles_fetched, dispatch]);   
-
+      }, [authState.all_profiles_fetched, dispatch]);  
 
     const [postContent, setPostContent] = useState("");
     const [fileContent, setFileContent] = useState();
@@ -76,7 +68,7 @@ useEffect(() => {
 };
 
     if(authState.user){
-      
+
         return (
           <UserLayout>
 
@@ -296,3 +288,5 @@ useEffect(() => {
         );
     }
 }
+
+

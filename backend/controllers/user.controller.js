@@ -2,7 +2,6 @@ import Profile from "../models/profile.model.js";
 import User from "../models/user.model.js";
 import Post from "../models/posts.model.js";
 import crypto from "crypto";
-
 import bcrypt from "bcrypt"
 import PDFDocument from "pdfkit";
 import fs  from "fs";
@@ -11,10 +10,6 @@ import Comment from "../models/comments.model.js";
 import mongoose from "mongoose";
 import user from "../models/user.model.js"
 import connectionRequest from "../models/connectionmodel.js";
-
-
-
-
 
 // import { loadEnvFile } from "process";
 
@@ -69,6 +64,7 @@ export const register = async (req,res) =>{
         const profile = new Profile({ userId: newUser._id });
         await profile.save();
 
+
         return res.json({message: "User registered successfully"});
 
     } catch(error){
@@ -101,6 +97,7 @@ export const login = async (req,res) =>{
                     interests: [],
                 });
                 await newProfile.save();
+
             }
         return res.json({ 
               token, 
@@ -112,6 +109,7 @@ export const login = async (req,res) =>{
 
       }
 };
+
 
 export const update_profile_picture = async (req,res) =>{
     const {token} = req.body;
@@ -182,6 +180,8 @@ export const getUserAndProfile = async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
+
+
 
 
 export const updateProfileData = async (req,res) =>{
