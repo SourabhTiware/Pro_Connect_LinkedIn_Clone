@@ -206,16 +206,28 @@ export const updateProfileData = async (req,res) =>{
     }
 }
 
-export const getAllUserProfile = async (req,res) =>{
-    try{
-        const profiles = await Profile.find()
-         .populate("userId", "name username email profilePicture");
+// export const getAllUserProfile = async (req,res) =>{
+//     try{
+//         const profiles = await Profile.find()
+//          .populate("userId", "name username email profilePicture");
 
-        return res.json({profiles});
+//         return res.json({profiles});
 
-    } catch(error){
-        return res.status(500).json({message: error.message});
-    }
+//     } catch(error){
+//         return res.status(500).json({message: error.message});
+//     }
+// };
+
+export const getAllUserProfile = async (req, res) => {
+  try {
+    const profiles = await Profile.find({
+      userId: { $ne: null }   // 🔥 drop orphan profiles
+    }).populate("userId", "name username email profilePicture");
+
+    return res.json({ profiles });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
 };
 
 export const downloadProfile = async (req,res) =>{
